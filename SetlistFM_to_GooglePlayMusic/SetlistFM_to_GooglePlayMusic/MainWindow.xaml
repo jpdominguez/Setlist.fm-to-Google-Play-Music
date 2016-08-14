@@ -9,7 +9,7 @@
         Height="500"
         mc:Ignorable="d">
     <StackPanel>
-        <TextBox x:Name="tbox_ArtistName" />
+        <TextBox x:Name="tbox_ArtistName" TextChanged="tbox_ArtistName_TextChanged" />
         <TextBlock x:Name="tblock_Artists" Height="300" />
         <Button x:Name="button_SearchArtists"
                 Width="100"

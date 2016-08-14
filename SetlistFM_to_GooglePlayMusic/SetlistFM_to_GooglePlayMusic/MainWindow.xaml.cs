@@ -46,12 +46,14 @@ namespace SetlistFM_to_GooglePlayMusic
             //handle the result as needed...
             */
 
-            
+
         }
 
         private void button_SearchArtists_Click(object sender, RoutedEventArgs e)
         {
-            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName="+tbox_ArtistName.Text);
+            tblock_Artists.Text = "";
+
+            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName=" + tbox_ArtistName.Text.Replace(' ', '-'));
 
             Console.WriteLine(uri.Query);
             XmlSerializer s = new XmlSerializer(typeof(Artists));
@@ -63,10 +65,51 @@ namespace SetlistFM_to_GooglePlayMusic
             TextReader r = new StreamReader(stream);
             Artists im = (Artists)s.Deserialize(r);
 
+
             foreach (Artist band in im.List)
             {
-                tblock_Artists.Text += "\n" + band.Name + " \\\\\\ " + band.Disambiguation;
+                tblock_Artists.Text += band.Name;
+                if (im.List.Count > 1)
+                {
+                    tblock_Artists.Text += " \\\\\\ " + band.Disambiguation + "\n";
+                }
             }
+        }
+
+        private void tbox_ArtistName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                tblock_Artists.Text = "";
+
+                Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName=" + tbox_ArtistName.Text.Replace(' ', '-'));
+
+                Console.WriteLine(uri.Query);
+                XmlSerializer s = new XmlSerializer(typeof(Artists));
+
+                //Create the request object
+                WebRequest req = WebRequest.Create(uri);
+                WebResponse resp = req.GetResponse();
+                Stream stream = resp.GetResponseStream();
+                TextReader r = new StreamReader(stream);
+                Artists im = (Artists)s.Deserialize(r);
+
+
+                foreach (Artist band in im.List)
+                {
+                    tblock_Artists.Text += band.Name;
+                    if (im.List.Count > 1)
+                    {
+                        tblock_Artists.Text += " \\\\\\ " + band.Disambiguation + "\n";
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            
         }
     }
 }

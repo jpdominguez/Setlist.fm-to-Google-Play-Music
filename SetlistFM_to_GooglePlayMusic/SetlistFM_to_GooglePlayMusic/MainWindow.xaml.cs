@@ -28,11 +28,12 @@ namespace SetlistFM_to_GooglePlayMusic
         {
             InitializeComponent();
 
+            /*
             //read a resource from a REST url
-            //Uri uri = new Uri("d00ca8ce - 14cd - 4089 - a542 - 8225974c0188");
-            Uri uri = new Uri("ca891d65 - d9b0 - 4258 - 89f7 - e6ba29d83767");
-
-            XmlSerializer s = new XmlSerializer(typeof(Setlist));
+            //API KEY Uri uri = new Uri("d00ca8ce - 14cd - 4089 - a542 - 8225974c0188");
+            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/artist/ca891d65-d9b0-4258-89f7-e6ba29d83767");
+            //Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistMbid=ca891d65-d9b0-4258-89f7-e6ba29d83767");
+            XmlSerializer s = new XmlSerializer(typeof(Artist));
 
             //Create the request object
             WebRequest req = WebRequest.Create(uri);
@@ -40,9 +41,32 @@ namespace SetlistFM_to_GooglePlayMusic
             Stream stream = resp.GetResponseStream();
             TextReader r = new StreamReader(stream);
 
-            Setlist order = (Setlist)s.Deserialize(r);
+            Artist im = (Artist)s.Deserialize(r);
 
             //handle the result as needed...
+            */
+
+            
+        }
+
+        private void button_SearchArtists_Click(object sender, RoutedEventArgs e)
+        {
+            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName="+tbox_ArtistName.Text);
+
+            Console.WriteLine(uri.Query);
+            XmlSerializer s = new XmlSerializer(typeof(Artists));
+
+            //Create the request object
+            WebRequest req = WebRequest.Create(uri);
+            WebResponse resp = req.GetResponse();
+            Stream stream = resp.GetResponseStream();
+            TextReader r = new StreamReader(stream);
+            Artists im = (Artists)s.Deserialize(r);
+
+            foreach (Artist band in im.List)
+            {
+                tblock_Artists.Text += "\n" + band.Name + " \\\\\\ " + band.Disambiguation;
+            }
         }
     }
 }

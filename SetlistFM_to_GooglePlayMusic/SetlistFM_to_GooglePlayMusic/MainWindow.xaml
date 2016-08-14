@@ -6,7 +6,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="525"
-        Height="350"
+        Height="500"
         mc:Ignorable="d">
-    <Grid />
+    <StackPanel>
+        <TextBox x:Name="tbox_ArtistName" />
+        <TextBlock x:Name="tblock_Artists" Height="300" />
+        <Button x:Name="button_SearchArtists"
+                Width="100"
+                Height="25"
+                Click="button_SearchArtists_Click" />
+    </StackPanel>
+
 </Window>

@@ -3,18 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:SetlistFM_to_GooglePlayMusic"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="525"
         Height="500"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        TextElement.FontSize="13"
+        TextElement.FontWeight="Regular"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
         mc:Ignorable="d">
+
     <StackPanel>
         <TextBox x:Name="tbox_ArtistName" TextChanged="tbox_ArtistName_TextChanged" />
-        <TextBlock x:Name="tblock_Artists" Height="300" />
+        <materialDesign:Card Margin="16" Padding="32">
+            <ListBox x:Name="listBox_Artists" />
+        </materialDesign:Card>
+        <!--<TextBlock x:Name="tblock_Artists" Height="300" />-->
         <Button x:Name="button_SearchArtists"
                 Width="100"
                 Height="25"
-                Click="button_SearchArtists_Click" />
+                Click="button_SearchArtists_Click"
+                Style="{DynamicResource MaterialDesignRaisedButton}">
+            Test
+        </Button>
     </StackPanel>
 
 </Window>

@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using Fm.Setlist.Api.Model;
+using System.Threading;
 
 namespace SetlistFM_to_GooglePlayMusic
 {
@@ -51,7 +52,7 @@ namespace SetlistFM_to_GooglePlayMusic
 
         private void button_SearchArtists_Click(object sender, RoutedEventArgs e)
         {
-            tblock_Artists.Text = "";
+            //tblock_Artists.Text = "";
 
             /*
             Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName=" + tbox_ArtistName.Text.Replace(' ', '-'));
@@ -69,26 +70,39 @@ namespace SetlistFM_to_GooglePlayMusic
 
             //foreach (Artist band in im.List)
 
-            List<Artist> bands = searchArtistByName(tbox_ArtistName.Text.Replace(' ', '-'));
+           // List<Artist> bands = new List<Artist>();
+            Task.Factory.StartNew(() => fillTB());
+            //Thread thread = new Thread(fillTB);
+            //thread.Start();
+
+            //List<Setlist> setlists = searchSetlistsByArtistName(tbox_ArtistName.Text, 3);
+            //List<Song> songs = songsFromSetlist(setlists[0]);
+        }
+
+        private void fillTB()
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                List<Artist> bands = searchArtistByName(tbox_ArtistName.Text.Replace(' ', '-'));
+            
             foreach (Artist band in bands)
             {
-                tblock_Artists.Text += band.Name;
-                //if (im.List.Count > 1)
-                if(bands.Count > 1)
+                //tblock_Artists.Text += band.Name;
+                if (bands.Count > 1)
                 {
                     if (!String.IsNullOrEmpty(band.Disambiguation))
                     {
-                        tblock_Artists.Text += " (" + band.Disambiguation + ")\n";
+                        //tblock_Artists.Text += " (" + band.Disambiguation + ")\n";
+                            listBox_Artists.Items.Add(band.Name +  "(" + band.Disambiguation);
                     }
                     else
                     {
-                        tblock_Artists.Text += "\n";
-                    }
+                        //tblock_Artists.Text += "\n";
+                            listBox_Artists.Items.Add(band.Name);
+                        }
                 }
             }
-
-            List<Setlist> setlists = searchSetlistsByArtistName(tbox_ArtistName.Text, 3);
-            List<Song> songs = songsFromSetlist(setlists[0]);
+            });
         }
 
 

@@ -43,24 +43,24 @@ namespace SetlistFM_to_GooglePlayMusic
             this.Dispatcher.Invoke(() =>
             {
                 List<Artist> bands = searchArtistByName(tbox_ArtistName.Text.Replace(' ', '-'));
-            
-            foreach (Artist band in bands)
-            {
-                //tblock_Artists.Text += band.Name;
-                if (bands.Count > 0)
+
+                foreach (Artist band in bands)
                 {
-                    if (!String.IsNullOrEmpty(band.Disambiguation))
+                    //tblock_Artists.Text += band.Name;
+                    if (bands.Count > 0)
                     {
-                        //tblock_Artists.Text += " (" + band.Disambiguation + ")\n";
-                            listBox_Artists.Items.Add(band.Name +  " (" + band.Disambiguation +")");
-                    }
-                    else
-                    {
-                        //tblock_Artists.Text += "\n";
+                        if (!String.IsNullOrEmpty(band.Disambiguation))
+                        {
+                            //tblock_Artists.Text += " (" + band.Disambiguation + ")\n";
+                            listBox_Artists.Items.Add(band.Name + " (" + band.Disambiguation + ")");
+                        }
+                        else
+                        {
+                            //tblock_Artists.Text += "\n";
                             listBox_Artists.Items.Add(band.Name);
                         }
+                    }
                 }
-            }
             });
         }
 
@@ -91,7 +91,7 @@ namespace SetlistFM_to_GooglePlayMusic
         {
             List<Setlist> setlists = new List<Setlist>();
 
-            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/setlists?p="+pageNumber.ToString()+"&artistName=" + artistName);
+            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/setlists?p=" + pageNumber.ToString() + "&artistName=" + artistName);
 
             //Console.WriteLine(uri.Query);
             XmlSerializer s = new XmlSerializer(typeof(Setlists));
@@ -113,7 +113,7 @@ namespace SetlistFM_to_GooglePlayMusic
         {
             List<Song> songs = new List<Song>();
 
-            foreach(Set s in sl.Sets)
+            foreach (Set s in sl.Sets)
             {
                 songs.AddRange(s.Songs);
             }
@@ -161,9 +161,17 @@ namespace SetlistFM_to_GooglePlayMusic
         private void button_displaySetlists_Click(object sender, RoutedEventArgs e)
         {
             List<Setlist> setlists;
-            if(listBox_Artists.SelectedIndex != -1)
+            if (listBox_Artists.SelectedIndex != -1)
             {
                 setlists = searchSetlistsByArtistName(listBox_Artists.SelectedItem.ToString(), 1);
+            }
+        }
+
+        private void tbox_ArtistName_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                button_SearchArtists_Click(this, null);
             }
         }
     }

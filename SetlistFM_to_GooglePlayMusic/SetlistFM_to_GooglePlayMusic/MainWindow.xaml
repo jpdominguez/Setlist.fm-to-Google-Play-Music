@@ -27,6 +27,7 @@
                 <TextBox x:Name="tbox_ArtistName"
                          Width="200"
                          Margin="0 20 20 20"
+                         KeyUp="tbox_ArtistName_KeyUp"
                          TextChanged="tbox_ArtistName_TextChanged" />
             </StackPanel>
         </materialDesign:Card>

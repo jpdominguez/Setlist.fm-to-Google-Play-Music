@@ -6,8 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
-        Width="525"
-        Height="500"
+        Width="768"
+        Height="520"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         TextElement.FontSize="13"
@@ -17,19 +17,48 @@
         TextOptions.TextRenderingMode="Auto"
         mc:Ignorable="d">
 
-    <StackPanel>
-        <TextBox x:Name="tbox_ArtistName" TextChanged="tbox_ArtistName_TextChanged" />
-        <materialDesign:Card Margin="16" Padding="32">
-            <ListBox x:Name="listBox_Artists" />
+    <DockPanel>
+        <materialDesign:Card Width="250"
+                             Margin="10"
+                             DockPanel.Dock="Top"
+                             Padding="10">
+            <StackPanel Orientation="Horizontal">
+                <Label VerticalContentAlignment="Center">Artist:</Label>
+                <TextBox x:Name="tbox_ArtistName"
+                         Width="200"
+                         Margin="0 20 20 20"
+                         TextChanged="tbox_ArtistName_TextChanged" />
+            </StackPanel>
+        </materialDesign:Card>
+
+        <materialDesign:Card Height="300"
+                             Margin="16 0 16 0"
+                             DockPanel.Dock="Top"
+                             Padding="32">
+            <ListBox x:Name="listBox_Artists" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         </materialDesign:Card>
         <!--<TextBlock x:Name="tblock_Artists" Height="300" />-->
-        <Button x:Name="button_SearchArtists"
-                Width="100"
-                Height="25"
-                Click="button_SearchArtists_Click"
-                Style="{DynamicResource MaterialDesignRaisedButton}">
-            Test
-        </Button>
-    </StackPanel>
+        <StackPanel Height="50"
+                    HorizontalAlignment="Center"
+                    DockPanel.Dock="Bottom"
+                    Orientation="Horizontal">
+            <Button x:Name="button_SearchArtists"
+                    Width="Auto"
+                    Height="25"
+                    Margin="20 0 20 0"
+                    Click="button_SearchArtists_Click"
+                    Style="{DynamicResource MaterialDesignRaisedButton}">
+                Test
+            </Button>
+            <Button x:Name="button_displaySetlists"
+                    Width="Auto"
+                    Height="25"
+                    Margin="20 0 20 0"
+                    Click="button_displaySetlists_Click"
+                    Style="{DynamicResource MaterialDesignRaisedButton}">
+                Display Setlists
+            </Button>
+        </StackPanel>
+    </DockPanel>
 
 </Window>

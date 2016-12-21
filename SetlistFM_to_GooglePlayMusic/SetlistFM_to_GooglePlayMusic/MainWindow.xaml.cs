@@ -28,55 +28,14 @@ namespace SetlistFM_to_GooglePlayMusic
         public MainWindow()
         {
             InitializeComponent();
-
-            /*
-            //read a resource from a REST url
-            //API KEY Uri uri = new Uri("d00ca8ce - 14cd - 4089 - a542 - 8225974c0188");
-            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/artist/ca891d65-d9b0-4258-89f7-e6ba29d83767");
-            //Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistMbid=ca891d65-d9b0-4258-89f7-e6ba29d83767");
-            XmlSerializer s = new XmlSerializer(typeof(Artist));
-
-            //Create the request object
-            WebRequest req = WebRequest.Create(uri);
-            WebResponse resp = req.GetResponse();
-            Stream stream = resp.GetResponseStream();
-            TextReader r = new StreamReader(stream);
-
-            Artist im = (Artist)s.Deserialize(r);
-
-            //handle the result as needed...
-            */
-
-
         }
 
         private void button_SearchArtists_Click(object sender, RoutedEventArgs e)
         {
-            //tblock_Artists.Text = "";
+            listBox_Artists.Items.Clear();
 
-            /*
-            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName=" + tbox_ArtistName.Text.Replace(' ', '-'));
-
-            Console.WriteLine(uri.Query);
-            XmlSerializer s = new XmlSerializer(typeof(Artists));
-
-            //Create the request object
-            WebRequest req = WebRequest.Create(uri);
-            WebResponse resp = req.GetResponse();
-            Stream stream = resp.GetResponseStream();
-            TextReader r = new StreamReader(stream);
-            Artists im = (Artists)s.Deserialize(r);
-            */
-
-            //foreach (Artist band in im.List)
-
-           // List<Artist> bands = new List<Artist>();
             Task.Factory.StartNew(() => fillTB());
-            //Thread thread = new Thread(fillTB);
-            //thread.Start();
 
-            //List<Setlist> setlists = searchSetlistsByArtistName(tbox_ArtistName.Text, 3);
-            //List<Song> songs = songsFromSetlist(setlists[0]);
         }
 
         private void fillTB()
@@ -88,12 +47,12 @@ namespace SetlistFM_to_GooglePlayMusic
             foreach (Artist band in bands)
             {
                 //tblock_Artists.Text += band.Name;
-                if (bands.Count > 1)
+                if (bands.Count > 0)
                 {
                     if (!String.IsNullOrEmpty(band.Disambiguation))
                     {
                         //tblock_Artists.Text += " (" + band.Disambiguation + ")\n";
-                            listBox_Artists.Items.Add(band.Name +  "(" + band.Disambiguation);
+                            listBox_Artists.Items.Add(band.Name +  " (" + band.Disambiguation +")");
                     }
                     else
                     {
@@ -197,6 +156,15 @@ namespace SetlistFM_to_GooglePlayMusic
             }
             */
 
+        }
+
+        private void button_displaySetlists_Click(object sender, RoutedEventArgs e)
+        {
+            List<Setlist> setlists;
+            if(listBox_Artists.SelectedIndex != -1)
+            {
+                setlists = searchSetlistsByArtistName(listBox_Artists.SelectedItem.ToString(), 1);
+            }
         }
     }
 }

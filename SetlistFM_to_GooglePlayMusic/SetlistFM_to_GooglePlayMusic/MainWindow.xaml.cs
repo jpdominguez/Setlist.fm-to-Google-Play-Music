@@ -44,10 +44,10 @@ namespace SetlistFM_to_GooglePlayMusic
             {
                 List<Artist> bands = searchArtistByName(tbox_ArtistName.Text.Replace(' ', '-'));
 
-                foreach (Artist band in bands)
+
+                if (bands.Count > 0)
                 {
-                    //tblock_Artists.Text += band.Name;
-                    if (bands.Count > 0)
+                    foreach (Artist band in bands)
                     {
                         if (!String.IsNullOrEmpty(band.Disambiguation))
                         {
@@ -61,13 +61,20 @@ namespace SetlistFM_to_GooglePlayMusic
                         }
                     }
                 }
+                else
+                {
+                    listBox_Artists.Items.Add("No results found");
+                }
+
             });
         }
+    
 
 
         private List<Artist> searchArtistByName(string artistName)
         {
             List<Artist> artists = new List<Artist>();
+            Artists im = new Artists();
 
             Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName=" + artistName);
 
@@ -75,13 +82,20 @@ namespace SetlistFM_to_GooglePlayMusic
             XmlSerializer s = new XmlSerializer(typeof(Artists));
 
             //Create the request object
-            WebRequest req = WebRequest.Create(uri);
-            WebResponse resp = req.GetResponse();
-            Stream stream = resp.GetResponseStream();
-            TextReader r = new StreamReader(stream);
-            Artists im = (Artists)s.Deserialize(r);
+            try
+            {
+                WebRequest req = WebRequest.Create(uri);
+                WebResponse resp = req.GetResponse();
+                Stream stream = resp.GetResponseStream();
+                TextReader r = new StreamReader(stream);
+                im = (Artists)s.Deserialize(r);
+                artists.AddRange(im.List);
+            }
+            catch (WebException ex)
+            {
+                WebResponse resp = ex.Response;
+            }
 
-            artists.AddRange(im.List);
 
             return artists;
         }

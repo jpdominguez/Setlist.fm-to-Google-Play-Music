@@ -43,15 +43,30 @@
                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <DockPanel>
+
+                        <DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
+
                             <Button Height="25"
-                                    Margin="20 0 0 0"
-                                    VerticalAlignment="Center"
-                                    VerticalContentAlignment="Center"
-                                    DockPanel.Dock="Right">
+                                    Margin="0 0 50 0"
+                                    DockPanel.Dock="Right"
+                                    Visibility="Hidden">
                                 Prueba
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <!--<Setter Property="Content" Value="You may write!!!" />-->
+                                        <!--  Here is the 'normal' content  -->
+                                        <Style.Triggers>
+                                            <!--  Here is how we bind to another control's property  -->
+                                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=listBoxItemText}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                                <!--  Here is the 'override' content  -->
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
                             </Button>
-                            <Border Height="Auto"
+
+                            <Border Name="listBoxItemText"
                                     BorderBrush="{x:Null}"
                                     DockPanel.Dock="Left">
                                 <TextBlock VerticalAlignment="Center"
@@ -62,6 +77,8 @@
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+
+
                 <!--
                 <ListBox.Resources>
                     <Style TargetType="{x:Type ListBoxItem}">

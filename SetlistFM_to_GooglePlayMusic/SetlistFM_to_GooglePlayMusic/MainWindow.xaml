@@ -36,8 +36,43 @@
                              Margin="16 0 16 0"
                              DockPanel.Dock="Top"
                              Padding="32">
-            <ListBox x:Name="listBox_Artists" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            <ListBox x:Name="listBox_Artists"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     ItemsSource="{Binding}"
+                     ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Button Height="25"
+                                    Margin="20 0 0 0"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    DockPanel.Dock="Right">
+                                Prueba
+                            </Button>
+                            <Border Height="Auto"
+                                    BorderBrush="{x:Null}"
+                                    DockPanel.Dock="Left">
+                                <TextBlock VerticalAlignment="Center"
+                                           Text="{Binding}"
+                                           TextWrapping="Wrap" />
+                            </Border>
+
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <!--
+                <ListBox.Resources>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Margin" Value="0,0,0,15" />
+                    </Style>
+                </ListBox.Resources>
+                -->
+            </ListBox>
+
         </materialDesign:Card>
+
         <!--<TextBlock x:Name="tblock_Artists" Height="300" />-->
         <StackPanel Height="50"
                     HorizontalAlignment="Center"

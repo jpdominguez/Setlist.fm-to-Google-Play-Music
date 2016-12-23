@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="SetlistFM_to_GooglePlayMusic.Controls.SetlistViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SetlistFM_to_GooglePlayMusic.Controls"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             TextElement.FontSize="13"
+             TextElement.FontWeight="Regular"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             mc:Ignorable="d">
+    <DockPanel>
+        <materialDesign:Card Margin="16" Padding="32">
+
+            <DataGrid x:Name="dataGrid_log"
+                      AlternationCount="2"
+                      AutoGenerateColumns="False"
+                      DockPanel.Dock="Top"
+                      FontSize="20"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding Data}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding gpsData.time}" Header="Date" />
+                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="City" />
+                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Venue" />
+                    <DataGridTextColumn Binding="{Binding gpsData.longitude}" Header="Tour" />
+                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Songs" />
+                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="More info" />
+                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Add to GMusic" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--
+            <ListView Name="lvUsers">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Name}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Padding="20 5 20 5" Tag="Date">Name</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Age}">
+                            <GridViewColumn.Header>
+                                <GridViewColumnHeader Padding="20 5 20 5" Tag="Venue">Age</GridViewColumnHeader>
+                            </GridViewColumn.Header>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            -->
+        </materialDesign:Card>
+    </DockPanel>
+</UserControl>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SetlistFM_to_GooglePlayMusic.Controls
 {
     /// <summary>
-    /// Interaction logic for ArtistListItem.xaml
+    /// Interaction logic for SetlistViewer.xaml
     /// </summary>
-    public partial class ArtistListItem : UserControl
+    public partial class SetlistViewer : UserControl
     {
-        public ArtistListItem()
+        public SetlistViewer()
         {
             InitializeComponent();
         }

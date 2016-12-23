@@ -5,6 +5,7 @@
         xmlns:local="clr-namespace:SetlistFM_to_GooglePlayMusic"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:myControls="clr-namespace:SetlistFM_to_GooglePlayMusic.Controls"
         Title="MainWindow"
         Width="768"
         Height="520"
@@ -45,10 +46,15 @@
                     <DataTemplate>
                         <DockPanel x:Name="listBoxItemText" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
                             <Button Name="listBoxItemButton"
-                                    Height="25"
-                                    Margin="0 0 20 0"
-                                    DockPanel.Dock="Right">
-                                Prueba
+                                    Width="30"
+                                    Height="30"
+                                    Margin="0 5 20 5"
+                                    DockPanel.Dock="Right"
+                                    Style="{DynamicResource MaterialDesignFloatingActionButton}">
+                                <Image Width="24"
+                                       Height="24"
+                                       Source="Images/playlist-check.png" />
+                                <!--
                                 <Button.Style>
                                     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
                                         <Setter Property="Visibility" Value="Hidden" />
@@ -69,19 +75,10 @@
                                                     <Setter Property="Button.Visibility" Value="Visible" />
                                                 </DataTrigger.Setters>
                                             </DataTrigger>
-                                            <!--
-                                            <DataTrigger Value="True">
-                                                <DataTrigger.Binding>
-                                                    <Binding ElementName="listBoxItemText" Path="IsMouseOver" />
-                                                </DataTrigger.Binding>
-                                                <DataTrigger.Setters>
-                                                    <Setter Property="Button.Visibility" Value="Visible" />
-                                                </DataTrigger.Setters>
-                                            </DataTrigger>
-                                            -->
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
+                                -->
                             </Button>
 
                             <Border BorderBrush="{x:Null}" DockPanel.Dock="Left">
@@ -103,6 +100,14 @@
                 </ListBox.Resources>
                 -->
             </ListBox>
+
+        </materialDesign:Card>
+
+        <materialDesign:Card Height="300"
+                             Margin="16 0 16 0"
+                             DockPanel.Dock="Right"
+                             Padding="32">
+            <myControls:SetlistViewer />
 
         </materialDesign:Card>
 

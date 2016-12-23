@@ -43,32 +43,48 @@
                      ScrollViewer.VerticalScrollBarVisibility="Auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-
-                        <DockPanel Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
-
-                            <Button Height="25"
-                                    Margin="0 0 50 0"
-                                    DockPanel.Dock="Right"
-                                    Visibility="Hidden">
+                        <DockPanel x:Name="listBoxItemText" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
+                            <Button Name="listBoxItemButton"
+                                    Height="25"
+                                    Margin="0 0 20 0"
+                                    DockPanel.Dock="Right">
                                 Prueba
                                 <Button.Style>
-                                    <Style TargetType="Button">
-                                        <!--<Setter Property="Content" Value="You may write!!!" />-->
-                                        <!--  Here is the 'normal' content  -->
+                                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
+                                        <Setter Property="Visibility" Value="Hidden" />
                                         <Style.Triggers>
-                                            <!--  Here is how we bind to another control's property  -->
-                                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=listBoxItemText}" Value="True">
-                                                <Setter Property="Visibility" Value="Visible" />
-                                                <!--  Here is the 'override' content  -->
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <Binding ElementName="listBoxItemText" Path="IsMouseOver" />
+                                                </DataTrigger.Binding>
+                                                <DataTrigger.Setters>
+                                                    <Setter Property="Button.Visibility" Value="Visible" />
+                                                </DataTrigger.Setters>
                                             </DataTrigger>
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <Binding ElementName="listBoxItemButton" Path="IsMouseOver" />
+                                                </DataTrigger.Binding>
+                                                <DataTrigger.Setters>
+                                                    <Setter Property="Button.Visibility" Value="Visible" />
+                                                </DataTrigger.Setters>
+                                            </DataTrigger>
+                                            <!--
+                                            <DataTrigger Value="True">
+                                                <DataTrigger.Binding>
+                                                    <Binding ElementName="listBoxItemText" Path="IsMouseOver" />
+                                                </DataTrigger.Binding>
+                                                <DataTrigger.Setters>
+                                                    <Setter Property="Button.Visibility" Value="Visible" />
+                                                </DataTrigger.Setters>
+                                            </DataTrigger>
+                                            -->
                                         </Style.Triggers>
                                     </Style>
                                 </Button.Style>
                             </Button>
 
-                            <Border Name="listBoxItemText"
-                                    BorderBrush="{x:Null}"
-                                    DockPanel.Dock="Left">
+                            <Border BorderBrush="{x:Null}" DockPanel.Dock="Left">
                                 <TextBlock VerticalAlignment="Center"
                                            Text="{Binding}"
                                            TextWrapping="Wrap" />

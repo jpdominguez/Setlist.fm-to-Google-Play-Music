@@ -53,7 +53,7 @@
                                     Style="{DynamicResource MaterialDesignFloatingActionButton}">
                                 <Image Width="24"
                                        Height="24"
-                                       Source="Images/playlist-check.png" />
+                                       Source="Images/magnify.png" />
                                 <!--
                                 <Button.Style>
                                     <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">

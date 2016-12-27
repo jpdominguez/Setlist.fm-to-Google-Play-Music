@@ -24,7 +24,7 @@
                       DockPanel.Dock="Top"
                       FontSize="20"
                       IsReadOnly="True"
-                      ItemsSource="{Binding Data}">
+                      ItemsSource="{Binding}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding gpsData.time}" Header="Date" />
                     <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="City" />

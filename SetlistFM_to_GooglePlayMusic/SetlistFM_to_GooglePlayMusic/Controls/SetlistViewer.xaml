@@ -19,6 +19,14 @@
         <materialDesign:Card Margin="16" Padding="32">
 
             <DataGrid x:Name="dataGrid_log"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding DataRow}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Path=Name}" Header="Name" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--
+            <DataGrid x:Name="dataGrid_log"
                       AlternationCount="2"
                       AutoGenerateColumns="False"
                       DockPanel.Dock="Top"
@@ -26,7 +34,7 @@
                       IsReadOnly="True"
                       ItemsSource="{Binding}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding gpsData.time}" Header="Date" />
+                    <DataGridTextColumn Binding="{Binding Path=Date}" Header="Date" />
                     <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="City" />
                     <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Venue" />
                     <DataGridTextColumn Binding="{Binding gpsData.longitude}" Header="Tour" />
@@ -35,6 +43,7 @@
                     <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Add to GMusic" />
                 </DataGrid.Columns>
             </DataGrid>
+            -->
             <!--
             <ListView Name="lvUsers">
                 <ListView.View>

@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Assets\APICalls.cs" />
     <Compile Include="Assets\setlistfm.cs" />
     <Compile Include="Controls\SetlistViewer.xaml.cs">
       <DependentUpon>SetlistViewer.xaml</DependentUpon>
@@ -117,6 +118,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\magnify.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

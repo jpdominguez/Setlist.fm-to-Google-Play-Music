@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using System.Xml.Serialization;
 using Fm.Setlist.Api.Model;
 using System.Threading;
+using SetlistFM_to_GooglePlayMusic.Assets;
 
 namespace SetlistFM_to_GooglePlayMusic
 {
@@ -68,7 +69,7 @@ namespace SetlistFM_to_GooglePlayMusic
 
             });
         }
-    
+
 
 
         private List<Artist> searchArtistByName(string artistName)
@@ -76,7 +77,7 @@ namespace SetlistFM_to_GooglePlayMusic
             List<Artist> artists = new List<Artist>();
             Artists im = new Artists();
 
-            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/artists?artistName=" + artistName);
+            Uri uri =  APICalls.SearchArtistByName(artistName);
 
             //Console.WriteLine(uri.Query);
             XmlSerializer s = new XmlSerializer(typeof(Artists));
@@ -105,7 +106,7 @@ namespace SetlistFM_to_GooglePlayMusic
         {
             List<Setlist> setlists = new List<Setlist>();
 
-            Uri uri = new Uri("http://api.setlist.fm/rest/0.1/search/setlists?p=" + pageNumber.ToString() + "&artistName=" + artistName);
+            Uri uri = APICalls.SearchSetlistByArtistAndPageNumber(artistName, pageNumber);
 
             //Console.WriteLine(uri.Query);
             XmlSerializer s = new XmlSerializer(typeof(Setlists));

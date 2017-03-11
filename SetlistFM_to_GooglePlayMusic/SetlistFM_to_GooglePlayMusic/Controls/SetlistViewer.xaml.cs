@@ -27,23 +27,35 @@ namespace SetlistFM_to_GooglePlayMusic.Controls
         {
             InitializeComponent();
 
+            /*
             DataGridTextColumn c1 = new DataGridTextColumn();
-            c1.Header = "Num";
-            c1.Binding = new Binding("Num");
+            c1.Header = "EventDate";
+            c1.Binding = new Binding("EventDate");
             c1.Width = 110;
             dataGrid_log.Columns.Add(c1);
-            DataGridTextColumn c2 = new DataGridTextColumn();
-            c2.Header = "Start";
-            c2.Width = 110;
-            c2.Binding = new Binding("Start");
+            */
+            DataGridTextColumn c1 = new DataGridTextColumn
+            {
+                Header = "EventDate",
+                Binding = new Binding("EventDate"),
+                Width = 110
+            };
+            dataGrid_log.Columns.Add(c1);
+            DataGridTextColumn c2 = new DataGridTextColumn()
+            {
+                Header = "Tour",
+                Width = 110,
+                Binding = new Binding("Tour")
+            };
             dataGrid_log.Columns.Add(c2);
             DataGridTextColumn c3 = new DataGridTextColumn();
-            c3.Header = "Finich";
-            c3.Width = 110;
-            c3.Binding = new Binding("Finich");
-            dataGrid_log.Columns.Add(c3);
+            //c3.Header = "Finish";
+            //c3.Width = 110;
+            //c3.Binding = new Binding("Finish");
+            //dataGrid_log.Columns.Add(c3);
 
-            dataGrid_log.Items.Add(new Setlist() { EventDate = "Prueba", Tour = "2012, 8, 15", Venue = "2012, 9, 15" });
+            dataGrid_log.Items.Add(new Setlist() {EventDate = "Prueba", Tour = "2012, 8, 15"});
+                //, Venue = "2012, 9, 15" });
         }
     }
 }

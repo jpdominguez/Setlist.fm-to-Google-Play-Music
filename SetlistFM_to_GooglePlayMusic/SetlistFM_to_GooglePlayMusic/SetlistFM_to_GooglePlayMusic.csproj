@@ -63,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\artistListBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\SetlistViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -77,6 +81,9 @@
     </Compile>
     <Compile Include="Assets\APICalls.cs" />
     <Compile Include="Assets\setlistfm.cs" />
+    <Compile Include="Controls\artistListBoxItem.xaml.cs">
+      <DependentUpon>artistListBoxItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\SetlistViewer.xaml.cs">
       <DependentUpon>SetlistViewer.xaml</DependentUpon>
     </Compile>

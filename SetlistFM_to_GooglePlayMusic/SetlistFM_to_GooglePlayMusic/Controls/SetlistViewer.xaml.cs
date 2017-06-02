@@ -28,12 +28,6 @@ namespace SetlistFM_to_GooglePlayMusic.Controls
             InitializeComponent();
 
             /*
-            DataGridTextColumn c1 = new DataGridTextColumn();
-            c1.Header = "EventDate";
-            c1.Binding = new Binding("EventDate");
-            c1.Width = 110;
-            dataGrid_log.Columns.Add(c1);
-            */
             DataGridTextColumn c1 = new DataGridTextColumn
             {
                 Header = "EventDate",
@@ -49,13 +43,9 @@ namespace SetlistFM_to_GooglePlayMusic.Controls
             };
             dataGrid_log.Columns.Add(c2);
             DataGridTextColumn c3 = new DataGridTextColumn();
-            //c3.Header = "Finish";
-            //c3.Width = 110;
-            //c3.Binding = new Binding("Finish");
-            //dataGrid_log.Columns.Add(c3);
 
             dataGrid_log.Items.Add(new Setlist() {EventDate = "Prueba", Tour = "2012, 8, 15"});
-                //, Venue = "2012, 9, 15" });
+            */
         }
     }
 }

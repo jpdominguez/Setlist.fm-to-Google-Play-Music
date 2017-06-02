@@ -18,6 +18,7 @@ using System.Xml.Serialization;
 using Fm.Setlist.Api.Model;
 using System.Threading;
 using SetlistFM_to_GooglePlayMusic.Assets;
+using System.Net.NetworkInformation;
 
 namespace SetlistFM_to_GooglePlayMusic
 {
@@ -77,7 +78,7 @@ namespace SetlistFM_to_GooglePlayMusic
             List<Artist> artists = new List<Artist>();
             Artists im = new Artists();
 
-            Uri uri =  APICalls.SearchArtistByName(artistName);
+            Uri uri = APICalls.SearchArtistByName(artistName);
 
             //Console.WriteLine(uri.Query);
             XmlSerializer s = new XmlSerializer(typeof(Artists));
@@ -186,8 +187,47 @@ namespace SetlistFM_to_GooglePlayMusic
         {
             if (e.Key == Key.Enter)
             {
-                button_SearchArtists_Click(this, null);
+                if (checkInternetConnection())
+                    button_SearchArtists_Click(this, null);
+                else
+                    MessageBox.Show("No internet connection detected. Please, connect to a valid network and try again.");
             }
+        }
+
+        private void button_lookForSetlists_Click(object sender, RoutedEventArgs e)
+        {
+            // ...
+            //var templatedParent = ((Button)sender).TemplatedParent;
+            var cosa = VisualTreeHelper.GetParent((Button)sender);
+            var cosa2 = VisualTreeHelper.GetParent(cosa);
+            var cosa3 = VisualTreeHelper.GetParent(cosa2);
+            var cosa4 = VisualTreeHelper.GetParent(cosa3);
+            var cosa5 = VisualTreeHelper.GetParent(cosa4);
+            var coo = (sender as Button).Content;
+            List<Setlist> setlists;
+            if (listBox_Artists.SelectedIndex != -1)
+            {
+                setlists = searchSetlistsByArtistName(listBox_Artists.SelectedItem.ToString(), 1);
+            }
+        }
+
+
+
+        private bool checkInternetConnection()
+        {
+            Ping myPing = new Ping();
+            String host = "google.com";
+            byte[] buffer = new byte[32];
+            int timeout = 1000;
+            PingOptions pingOptions = new PingOptions();
+            PingReply reply = myPing.Send(host, timeout, buffer, pingOptions);
+
+            bool res = false;
+            if (reply.Status == IPStatus.Success)
+            {
+                res = true;
+            }
+            return res;
         }
     }
 }

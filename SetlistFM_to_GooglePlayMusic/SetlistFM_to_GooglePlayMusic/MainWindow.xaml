@@ -47,6 +47,13 @@
                 VerticalContentAlignment="Center"
                 ItemsSource="{Binding}"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Focusable" Value="False" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <DockPanel x:Name="listBoxItemText" Width="{Binding ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}}">
@@ -55,37 +62,13 @@
                                 Width="30"
                                 Height="30"
                                 Margin="0,5,20,5"
+                                Click="button_lookForSetlists_Click"
                                 DockPanel.Dock="Right"
                                 Style="{DynamicResource MaterialDesignFloatingActionButton}">
                                 <Image
                                     Width="24"
                                     Height="24"
                                     Source="Images/magnify.png" />
-                                <!--
-                                <Button.Style>
-                                    <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="{x:Type Button}">
-                                        <Setter Property="Visibility" Value="Hidden" />
-                                        <Style.Triggers>
-                                            <DataTrigger Value="True">
-                                                <DataTrigger.Binding>
-                                                    <Binding ElementName="listBoxItemText" Path="IsMouseOver" />
-                                                </DataTrigger.Binding>
-                                                <DataTrigger.Setters>
-                                                    <Setter Property="Button.Visibility" Value="Visible" />
-                                                </DataTrigger.Setters>
-                                            </DataTrigger>
-                                            <DataTrigger Value="True">
-                                                <DataTrigger.Binding>
-                                                    <Binding ElementName="listBoxItemButton" Path="IsMouseOver" />
-                                                </DataTrigger.Binding>
-                                                <DataTrigger.Setters>
-                                                    <Setter Property="Button.Visibility" Value="Visible" />
-                                                </DataTrigger.Setters>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                -->
                             </Button>
 
                             <Border BorderBrush="{x:Null}" DockPanel.Dock="Left">
@@ -99,14 +82,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
 
-
-                <!--
-                <ListBox.Resources>
-                    <Style TargetType="{x:Type ListBoxItem}">
-                        <Setter Property="Margin" Value="0,0,0,15" />
-                    </Style>
-                </ListBox.Resources>
-                -->
             </ListBox>
 
         </materialDesign:Card>

@@ -18,48 +18,20 @@
     mc:Ignorable="d">
     <DockPanel>
         <materialDesign:Card Margin="16" Padding="32">
-
+            <!--
             <DataGrid
                 x:Name="dataGrid_log"
                 AutoGenerateColumns="False"
                 ItemsSource="{Binding DataRow}" />
-            <!--
-            <DataGrid x:Name="dataGrid_log"
-                      AlternationCount="2"
-                      AutoGenerateColumns="False"
-                      DockPanel.Dock="Top"
-                      FontSize="20"
-                      IsReadOnly="True"
-                      ItemsSource="{Binding}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Path=Date}" Header="Date" />
-                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="City" />
-                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Venue" />
-                    <DataGridTextColumn Binding="{Binding gpsData.longitude}" Header="Tour" />
-                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Songs" />
-                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="More info" />
-                    <DataGridTextColumn Binding="{Binding gpsData.latitude}" Header="Add to GMusic" />
-                </DataGrid.Columns>
-            </DataGrid>
             -->
-            <!--
-            <ListView Name="lvUsers">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Name}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Padding="20 5 20 5" Tag="Date">Name</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                        </GridViewColumn>
-                        <GridViewColumn Width="Auto" DisplayMemberBinding="{Binding Age}">
-                            <GridViewColumn.Header>
-                                <GridViewColumnHeader Padding="20 5 20 5" Tag="Venue">Age</GridViewColumnHeader>
-                            </GridViewColumn.Header>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            -->
+
+            <ListBox
+                x:Name="listBox_Artists"
+                VerticalAlignment="Center"
+                VerticalContentAlignment="Center"
+                ItemsSource="{Binding}"
+                ScrollViewer.VerticalScrollBarVisibility="Auto" />
+
         </materialDesign:Card>
     </DockPanel>
 </UserControl>
